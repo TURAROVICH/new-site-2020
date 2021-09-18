@@ -1,0 +1,280 @@
+$grid-columns: 12 !default;
+$grid-gutter-width: 32px !default;
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+$grid-breakpoints: (
+  xs: 0,
+  sm: 544px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1300px,
+  //xxxl: 2000px
+);
+@include _assert-ascending($grid-breakpoints, '$grid-breakpoints');
+$container-max-widths: (
+  md: 740px,
+  lg: 940px,
+  xl: 1140px,
+  xxl: 1200px,
+  //xxxl: 1680px
+);
+@include _assert-ascending($container-max-widths, '$container-max-widths');
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/bootstrap-reboot';
+@import '~bootstrap/scss/grid';
+@import '~bootstrap/scss/utilities';
+@import '~bootstrap/scss/popover';
+body {
+  font-family: Raleway;
+  font-weight: 500;
+  color: #323232;
+  font-size: 17px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+img {
+  max-width: 100%;
+}
+a {
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+p {
+  line-height: 1.64;
+}
+
+.red{
+  color: #FF3435;
+}
+
+.page{
+  &--static{
+    margin-bottom: 64px;
+  }
+  &__row{
+    margin-left: -49px;
+    margin-right: -49px;
+    & > div{
+      padding-left: 49px;
+      padding-right: 49px;
+    }
+  }
+  &__title{
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    line-height: 1.2;
+  }
+  &__text{
+    font-size: 17px;
+    line-height: 1.7;
+    &--block{
+      font-size: 16px;
+      margin-bottom: 32px;
+      max-width: 795px;
+    }
+    img{
+      margin-bottom: 20px;
+    }
+  }
+  &__h2{
+    font-size: 24px;
+    line-height: 1.4;
+    margin-bottom: 32px;
+  }
+  &__h4{
+    font-size: 18px;
+    margin-bottom: 1rem;
+  }
+  &__hint{
+    color: #858585;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+}
+
+.form{
+  &--checkout{
+    padding-right: 100px;
+  }
+  &__label{
+    font-size: 16px;
+  }
+  &__input{
+    outline: none;
+    border: none;
+    width: 100%;
+    position: relative;
+    padding: 10px 20px;
+    background: #EDEDED;
+    border-radius: 3px;
+    font-size: 16px;
+    &--textarea{
+      height: 150px;
+    }
+  }
+  &__group{
+    margin-bottom: 24px;
+  }
+  &__btn-wrap{
+    padding-top: 16px;
+  }
+  &__radio{
+    &-group{
+      display: inline-flex;
+      margin-bottom: 10px;
+    }
+    &-input{
+      position: absolute;
+      left: 0;
+      z-index: -1;
+      width: 1rem;
+      height: 1.25rem;
+      opacity: 0;
+      &:checked{
+        &~.form__radio-label:after{
+          background:#FF3435;
+        }
+        &~.form__radio-label:before{
+          border: 1px solid #323232;
+        }
+      }
+    }
+    &-label{
+      position: relative;
+      margin-bottom: 0;
+      vertical-align: top;
+      padding-left: 50px;
+      cursor: pointer;
+      &--bold{
+        font-weight: 600;
+      }
+      &:before{
+        border: 1px solid #DDD;
+        background: #FFF;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 24px;
+        height: 24px;
+        content: '';
+        border-radius: 3px;
+        transition: all 0.2s ease-in;
+      }
+      &:after{
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 12px;
+        height: 12px;
+        content: '';
+        border-radius: 3px;
+        transform: translate(6px, 6px);
+        transition: all 0.2s ease-in;
+      }
+    }
+  }
+  &__checkbox{
+    &-group{
+      display: inline-flex;
+      margin-bottom: 16px;
+    }
+    &-input{
+      position: absolute;
+      left: 0;
+      z-index: -1;
+      width: 1rem;
+      height: 1.25rem;
+      opacity: 0;
+      &:checked{
+        &~.form__checkbox-label:after{
+          background-image: url(../img/ico-check.svg);
+        }
+        &~.form__checkbox-label:before{
+          border: 1px solid #323232;
+        }
+      }
+    }
+    &-label{
+      position: relative;
+      margin-bottom: 0;
+      vertical-align: top;
+      padding-left: 50px;
+      cursor: pointer;
+      &:before{
+        border: 1px solid #DDD;
+        background: #FFF;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 24px;
+        height: 24px;
+        content: '';
+        border-radius: 3px;
+        transition: all 0.2s ease-in;
+      }
+      &:after{
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 12px;
+        height: 12px;
+        content: '';
+        border-radius: 3px;
+        transform: translate(6px, 6px);
+        transition: all 0.2s ease-in;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      &--sm{
+        padding-left: 35px;
+        &:before {
+          top: 2px;
+          width: 16px;
+          height: 16px;
+        }
+        &:after{
+          top: 2px;
+          width: 8px;
+          height: 8px;
+          transform: translate(4px, 4px);
+        }
+
+      }
+    }
+  }
+}
+
+.vue-slider-process {
+  background-color: #FF3435!important;
+}
+
+@media (max-width: 768px) {
+  .page{
+    &__title{
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+    &--content{
+      padding-bottom: 40px;
+    }
+    &__h2{
+      font-size: 20px;
+    }
+  }
+  .form {
+    &--checkout {
+      padding-right: 0;
+    }
+  }
+}

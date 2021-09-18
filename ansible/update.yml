@@ -1,0 +1,6 @@
+- hosts: 2020.odesign.pw
+  tasks:
+    - name: update site
+      shell:
+        cmd: docker-compose pull site && docker-compose stop site && docker-compose up -d site
+        chdir: /docker/site2020/

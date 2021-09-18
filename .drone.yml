@@ -1,0 +1,57 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: publish
+    image: plugins/docker
+    dockerfile: ./Dockerfile
+    context: .
+    settings:
+      repo: registry.odesign.pw/new-site-2020
+      registry: registry.odesign.pw
+      auto_tag: true
+      username:
+        from_secret: DOCKER_USERNAME
+      password:
+        from_secret: DOCKER_PASSWORD
+    when:
+      event:
+        - tag
+
+  - name: publish-bransh
+    image: plugins/docker
+    dockerfile: ./Dockerfile
+    context: .
+    settings:
+      repo: registry.odesign.pw/new-site-2020
+      registry: registry.odesign.pw
+      tags:
+        - ${DRONE_COMMIT_BRANCH}
+      username:
+        from_secret: DOCKER_USERNAME
+      password:
+        from_secret: DOCKER_PASSWORD
+    when:
+      event:
+        exclude:
+          - tag
+
+  - name: autoupdate-master
+    image: plugins/ansible:1
+    settings:
+      playbook: ansible/update.yml
+      inventory: ansible/inventory
+      private_key:
+        from_secret: ANSIBLE_PRIVATE_KEY
+    when:
+      branch:
+        - master
+
+  - name: slack-nfo
+    image: plugins/slack
+    settings:
+      webhook: https://hooks.slack.com/services/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
+      channel: new-site
+    when:
+      branch:
+        - master
