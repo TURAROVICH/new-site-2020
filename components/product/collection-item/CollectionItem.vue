@@ -11,6 +11,13 @@
 export default {
   props: {
     item: Object
+  },
+  mounted(){
+    let item = {}
+    let route = this.item.slug.slice(5,this.item.slug.length)
+    item = {...this.item,slug:route}
+
+    this.item = item
   }
 }
 </script>

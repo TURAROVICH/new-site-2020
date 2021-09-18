@@ -1,6 +1,6 @@
 <template>
   <div class="productItem">
-    <nuxt-link :to="`/shop/product/${item.slug}`">
+    <nuxt-link :to="`/product/${item.slug}`">
       <div class="productItem__img" :style="{ backgroundImage: `url(${item.img})` }"></div>
     </nuxt-link>
     <div class="productItem__title">{{ item.title }}</div>
